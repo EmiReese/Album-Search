@@ -1,16 +1,15 @@
 const url = "https://itunes.apple.com/search?term=${ARTIST_NAME}&media=music&entity=album&attribute=artistTerm&limit=200"
-
 var albumName;
 var albumCover;
 var artistName; 
 var albumCount;
 var albumInfo;
 
-function fetchAlbums () {
-    console.log("click");
-    
 
-}
+  
+    fetchJsonp(url)
+    .then(res => res.json())
+    .then(json => console.log(json));
 
 
 
