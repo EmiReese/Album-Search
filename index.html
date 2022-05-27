@@ -9,21 +9,33 @@
 </head>
 
 <body>
-    <input type="text" placeholder="Search artist name" class="search-input" />
-    <button class="search-button">
-        &#x1F50D;
-    </button>
+    <div class="nav">
+        <input type="text" placeholder="Search artist name" class="searchInput" />
+        <button class="searchButton">
+            &#x1F50D;
+        </button>
+    </div>
 
-    <ul class="album-list">
-        <li class="albumInfo">
-            <h3 class="artistName"></h3>
-            <p class="albumCount"></p>
-            <p class="albumName"></p>
-            <img class="albumCover" alt="An album cover" />
-        </li>
-    </ul>
+    <section className="album">
+        <ul class="albumList">
+            <div class="loader"></div>
+
+            <li class="albumInfo">
+                <h3 class="artistName"></h3>
+                <p class="albumCount"></p>
+                <p class="albumName"></p>
+                <img class="albumCover" alt="An album cover" />
+            </li>
+        </ul>
+
+        <div class="container">
+
+        </div>
+    </section>
+    </section>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
-    <!-- <script src="./jsonp.js"></script> -->
+
     <script src="./index.js"></script>
 
 </body>
