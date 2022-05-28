@@ -1,62 +1,49 @@
-const url = "https://itunes.apple.com/search?term=${ARTIST_NAME}&media=music&entity=album&attribute=artistTerm&limit=200"
-const searchInput = document.getElementsByClassName('searchInput');
-const searchButton = document.getElementsByClassName('searchButton');
+let searchResults
+let filterResults = document.querySelector(".filter")
+let container = document.querySelector(".album-container")
+let resultsHeader = document.getElementById("header__results")
+let searchBar = document.querySelector(".search-input")
 
+/// Makes sure theres a valid input
+function checksForValidInput() {
+    if (searchBar.value === "") {
+      alert("Please enter a valid search")  
+    } else {
+        resultsHeader.innerHTML = `<div class="spin"></div>`
 
-const search = () => {
-    searchButton.addEventListener('click', function(e){
-    let artist = searchInput.value
-    if (!artist){
-        alert('Please enter an artist name')
-        return
+        fetch(`https://itunes.apple.com/search?term=${searchBar.value}&media=music&entity=album&attribute=artistTerm&limit=200`)
+            .then(res => res.json())
+            .then(data => albums = data.results) 
+            .then(albums => showAlbums()) 
     }
-
-    document.querySelector(".loader").style.display = "block"
-
-    fetchJsonp(url)
-    .then(res => res.json())
-    .then((res) => {
-        console.log(res.results)
-        })
-    })
 }
 
-searchInput.addEventListener('keyup', function (event) {
-    if (event.keyCode === 13) {
-      searchButton.click()
-    }
-  })
 
+function showAlbums() {
+  
+    container.textContent = ""
+    albums.length == 0 ?
+        resultsHeader.innerText = `No results for ${searchBar.value}` :
+        resultsHeader.innerText = `${albums.length} results for ${searchBar.value}`
+    albums.forEach(album => {
 
-      function showAlbums(data){
-        document.querySelector(".loader").style.display = "none"
-        let numOfAlbums = data.length
     
- 
-      const albumCount = document.createElement('h1')
-      albumCount.classList.add("result-h1")
-      albumCount.innerHTML = `${numOfAlbums} albums found for "${searchInput.value}"`
-      document.querySelector('albumCount').appendChild(albumCount)
+        let albumCover = document.createElement("img") 
+        let albums = document.createElement("section")
+        let artistName = document.createElement("h1") 
+        let albumName = document.createElement("h3")
+        let albumPrice = document.createElement("p") 
 
-      const albumContainer = document.createElement('section')
-     albumContainer.classList.add("container")
-      document.querySelector('.results').appendChild(albumContainer)
+        let albumInfo = container.appendChild(albums)
+        albumInfo.appendChild(albumName).innerText = album.collectionName
+        albumInfo.appendChild(albumCover).src = album.artworkUrl60
+        albumInfo.appendChild(albumPrice).innerText = `$${album.collectionPrice}`
+        albumInfo.className = "card"
+    });
+}
 
-      data.forEach(album => {
-        const albumNames = document.createElement('h4')
-        albumNames.classList.add('albumName')
+document.querySelector(".search-btn").addEventListener("click", checksForValidInput)
+document.querySelector(".search-input").addEventListener("keyup", (e) => { e.key === "Enter" && checksForValidInput() })
+document.querySelector(".sort-btn").addEventListener("click", sortHandler)
+document.querySelector(".filter-btn").addEventListener("click", filterHandler)
 
-        albumNames.innerText = album.collectionName
-        albumDiv.appendChild(albumNames)
-
-        const albumInfo = document.createElement('ul')
-        albumInfo.classList.add('albumInfo')
-
-        const albumCovers = document.createElement('img')
-        albumCovers.classList.add('albumCover')
-
-        albumCovers.src = album.artworkUrl100
-        albumDiv.appendChild(albumCovers)
-        document.querySelector('container').appendChild(albumInfo)
-      })
-      }

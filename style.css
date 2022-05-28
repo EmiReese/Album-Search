@@ -1,0 +1,95 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  top: 50%;
+  left: 50%;
+}
+
+header input {
+  border: 3px solid grey;
+  border-right: none;
+  padding: 3px;
+  border-radius: 3px 0 0 3px;
+  width: 30rem;
+}
+
+body {
+  position: fixed;
+  width: 90%;
+}
+
+section button {
+  border: 1px solid grey;
+  background: grey;
+  border-radius: 0 3px 3px 0;
+  margin-top: 0.5rem;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.search-input {
+  border-radius: 3px 0 0 3px;
+  border: 3px solid grey;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.search-btn {
+  font-size: 20px;
+  width: 6rem;
+  margin-right: 0.5rem;
+  max-height: 4rem;
+  border: 1px solid grey;
+  background: grey;
+  border-radius: 0 3px 3px 0;
+}
+
+.album-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+img {
+  max-width: 200px;
+  max-height: 300px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  padding: 5%;
+  margin: 3%;
+  border: solid 1px grey;
+  justify-content: space-evenly;
+  box-shadow: 3px 3px 2px #888888;
+}
+
+.card h3 {
+  max-width: 700px;
+}
+
+.spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 3px #cfd0d1;
+  border-bottom-color: #1c87c9;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 40px;
+  will-change: transform;
+}

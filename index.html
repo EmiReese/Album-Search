@@ -5,39 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Emily Reese</title>
+
+    <!-- CSS LINK -->
+    <link rel="stylesheet" href="style.css" type="text/css">
+
 </head>
 
 <body>
-    <div class="nav">
-        <input type="text" placeholder="Search artist name" class="searchInput" />
-        <button class="searchButton">
-            &#x1F50D;
-        </button>
-    </div>
-
-    <section className="album">
-        <ul class="albumList">
-            <div class="loader"></div>
-
-            <li class="albumInfo">
-                <h3 class="artistName"></h3>
-                <p class="albumCount"></p>
-                <p class="albumName"></p>
-                <img class="albumCover" alt="An album cover" />
-            </li>
-        </ul>
-
-        <div class="container">
-
+    <header>
+        <div class="search">
+            <input type="search" class="search-input" placeholder="Search for an artist">
+            <button type="submit" class="search-btn">🔎︎</button>
+            <div id="tools" hidden></div>
         </div>
-    </section>
-    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
+        <h1 id="header__results"></h1>
+    </header>
 
+    <body class="album-container">
+    </body>
+    <!-- JAVASCRIPT LINK -->
     <script src="./index.js"></script>
-
 </body>
 
 </html>
