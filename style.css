@@ -53,6 +53,16 @@ section button {
   border-radius: 0 3px 3px 0;
 }
 
+.sort-btn {
+  font-size: 20px;
+  width: 6rem;
+  margin-right: 0.5rem;
+  max-height: 4rem;
+  border: 1px solid grey;
+  background: grey;
+  border-radius: 0 3px 3px 0;
+}
+
 .album-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
