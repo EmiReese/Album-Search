@@ -8,7 +8,7 @@ let searchBar = document.querySelector(".search-input")
 document.querySelector(".search-btn").addEventListener("click", search)
 document.querySelector(".search-input").
 addEventListener("keyup", (e) => { e.key === "Enter" && search() })
-document.querySelector(".sort-btn").addEventListener("click", Sort)
+// document.querySelector(".sort-btn").addEventListener("click", Sort)
 document.querySelector(".filter-btn").addEventListener("click", filterHandler)
 
   // This function  is checking to see if the user entered a valid search. Once a valid search input is put into the search bar, the search bar will grab the data from the API. Once the information is gathered, then it will call the "showAlbums" function to render the albums onto the page. 
@@ -30,24 +30,12 @@ function search() {
 }
 
 
-// this clears all older entries 
-function clearContainer() {
-    allAlbumsContainer.textContent = ""
-}
-
-
 // This function displays all albums related to search
 function showAlbums() {
-
-    clearContainer();
-
-    document.getElementById("tools").hidden = false;
-    document.getElementById("tools").style.display = "flex";
-    
-    container.textContent = ""
     albums.length == 0 ?
         resultsHeader.innerText = `No results for ${searchBar.value}` :
         resultsHeader.innerText = `${albums.length} results for ${searchBar.value}`
+        resultsHeader.className= "resultsHeader"
     albums.forEach(album => {
 
     // Creating elements to hold data 
@@ -63,27 +51,50 @@ function showAlbums() {
         albumInfo.appendChild(albumCover).src = album.artworkUrl60
         albumInfo.appendChild(albumPrice).innerText = `$${album.collectionPrice}`
         albumInfo.className = "card"
+
+        // Delete Button
+        let deleteButton = albumInfo.appendChild(document.createElement("button"))
+        deleteButton.addEventListener("click", deleteHandler)
+        deleteButton.innerText = "delete"
+        deleteButton.id = album.collectionId
+
+        // Edit Button 
+        //create button
+        let editButton = albumInfo.appendChild(document.createElement("button"))
+        // add event listener to button
+        editButton.addEventListener("click", (e) => editHandler(e, album))
+        // make the inner text say "edit", so the user is aware of what the button does
+        editButton.innerText = "edit"
+        editButton.id = album.collectionId
     });
 }
 
+function deleteHandler(e) {
+    e.target.parentNode.remove() 
+    albums = albums.filter(album => album.collectionId !== +this.id)
+    albums.length == 0 ?
+        resultsHeader.innerText = `No results results for ${searchBar.value}, please try again` :
+        resultsHeader.innerText = `${albums.length} results for ${searchBar.value}`
 
-function Sort (e) {
+}
 
-    function sortHandler(e) {
+function editHandler(e, album) {
+    let id = album.collectionId
 
-        // first time sort is pressed it sorts by price --- after that it sorts by name 
-        if (document.querySelector("#header___sort-btn").innerText === "Sort price") {
-            allAlbums.sort((a, b) => (parseInt(a.collectionPrice) - parseInt(b.collectionPrice)))
-            document.querySelector("#header___sort-btn").innerText = "Sort name"
-            displayAlbums()
+    let newInput = document.createElement('input')
+    let oldTitle = e.target.parentNode.firstChild
+    let parent = e.target.parentNode
+    parent.prepend(newInput)
+    newInput.placeholder = oldTitle.innerText
+    oldTitle.remove()
+    newInput.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+            let newTitle = document.createElement('h3')
+            e.target.parentNode.prepend(newTitle)
+            newTitle.innerText = e.target.value
+            newInput.remove()
+            console.log()
+            albums.map(album => album.collectionId === id ? album.collectionName = e.target.value : album)
         }
-        else {
-            allAlbums.sort((a, b) => a.collectionName.localeCompare(b.collectionName))
-            document.querySelector("#header___sort-btn").innerText = "Sort price"
-            displayAlbums()
-        }
-    }
-    document.querySelector("#header___sort-btn").addEventListener("click", sortHandler)
-
-    ///Rework the allAlbums array then call the showAlbums  function to rerender
+    })
 }
