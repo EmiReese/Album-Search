@@ -3,11 +3,11 @@ let filterResults = document.querySelector(".filter")
 let container = document.querySelector(".album-container")
 let resultsHeader = document.getElementById("header__results")
 let searchBar = document.querySelector(".search-input")
-const checkbox = document.getElementById('checkbox');
+let checkbox = document.getElementById('checkbox');
 
 checkbox.addEventListener('change', () => {
     document.body.classList.toggle('dark');
-    document.getElementsByClassName('.card').classList.toggle('dark');
+    document.querySelector(".card").classList.toggle('dark');
 })
 // adding event listeners to the buttons 
 document.querySelector(".search-btn").addEventListener("click", search)
