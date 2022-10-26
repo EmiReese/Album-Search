@@ -7,6 +7,7 @@ const checkbox = document.getElementById('checkbox');
 
 checkbox.addEventListener('change', () => {
     document.body.classList.toggle('dark');
+    document.getElementsByClassName('.card').classList.toggle('dark');
 })
 // adding event listeners to the buttons 
 document.querySelector(".search-btn").addEventListener("click", search)
@@ -14,12 +15,6 @@ document.querySelector(".search-input").
 addEventListener("keyup", (e) => { e.key === "Enter" && search() })
 // document.querySelector(".sort-btn").addEventListener("click", Sort)
 document.querySelector(".filter-btn").addEventListener("click", filterHandler)
-document.getElementById('.checkbox').addEventListener("change",  change)
-
-function change(){
-    //change theme of website
-    document.body.classList.toggle('dark');
-}
 
   // This function  is checking to see if the user entered a valid search. Once a valid search input is put into the search bar, the search bar will grab the data from the API. Once the information is gathered, then it will call the "showAlbums" function to render the albums onto the page. 
 function search() {
