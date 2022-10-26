@@ -1,7 +1,18 @@
+/* @import url("https://fonts.googleapis.com/css?family=Muli&display=swap"); */
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* background-color: #160d08; */
+  color: #faf9f6;
+}
+
+body {
+}
+
+body.dark {
+  background-color: #160d08;
 }
 
 header {
@@ -9,14 +20,58 @@ header {
   height: 20%;
   text-align: center;
   padding: 5%;
+  /* background-image: url("./assets/images/music.jpg");
+} */
 }
 
-header input {
-  border: 3px solid grey;
+.fa-camera-retro {
+  color: green;
+}
+
+label {
+  background-color: pink;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 50px;
+  height: 26px;
+  width: 50px;
+}
+
+.fa-moon {
+  color: #f1c40f;
+}
+
+.fa-sun {
+  color: #f39c12;
+}
+.ball {
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: 2px;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+.checkbox:checked + .label .ball {
+  transform: translate(24px);
+}
+
+.checkbox: header input {
+  /* border: 3px solid grey; */
   border-right: none;
-  padding: 3px;
+  /* padding: 3px; */
   border-radius: 3px 0 0 3px;
-  width: 30rem;
+  width: 15rem;
+  height: 2rem;
 }
 
 section button {
@@ -28,7 +83,7 @@ section button {
 
 .search-input {
   border-radius: 3px 0 0 3px;
-  border: 3px solid grey;
+  border-bottom: 1px solid #d3d3d3;
   padding: 10px;
   font-size: 20px;
 }
@@ -42,32 +97,37 @@ section button {
   background: light grey;
   border-radius: 0 3px 3px 0;
 }
-
+.search-btn::hover {
+  color: #ffb6c1;
+}
 .resultsHeader {
   text-align: center;
-  color: green;
+  color: #faf9f6;
   margin-right: 3%;
   margin-top: 3%;
+  font-size: 1rem;
+  font-weight: normal;
 }
 .album-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 img {
-  max-width: 200px;
-  max-height: 300px;
+  max-width: 75px;
+  max-height: 100px;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  padding: 5%;
-  margin: 3%;
+  max-width: 250px;
+  padding: 3%;
+  margin: 5% 10%;
   border: solid 1px grey;
   justify-content: space-evenly;
-  box-shadow: 3px 3px 2px #888888;
+  box-shadow: 3px 3px 2px #ffb6c1;
+  height: 90%;
 }
 
 .card h3 {
