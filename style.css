@@ -9,10 +9,13 @@
 }
 
 body {
+  background-color: #d9d9d9;
+  color: #363440;
 }
 
 body.dark {
-  background-color: #616161;
+  background-color: #363440;
+  color: #d9d9d9;
 }
 
 header {
@@ -29,7 +32,7 @@ header {
 }
 
 label {
-  background-color: #111;
+  background-color: #7b838c;
   border-radius: 50px;
   cursor: pointer;
   display: flex;
@@ -90,6 +93,9 @@ section button {
   border-bottom: 1px solid #d3d3d3;
   padding: 10px;
   font-size: 20px;
+  color: #7b838c;
+  justify-content: center;
+  background-color: #f2f2f2;
 }
 
 .search-btn {
@@ -106,11 +112,12 @@ section button {
 }
 .resultsHeader {
   text-align: center;
-  color: #faf9f6;
+  color: #7b838c;
   margin-right: 3%;
   margin-top: 3%;
   font-size: 1rem;
   font-weight: normal;
+  justify-content: center;
 }
 .album-container {
   display: grid;
@@ -132,11 +139,8 @@ img {
   justify-content: space-evenly;
   box-shadow: 3px 3px 2px #424242;
   height: 90%;
-  background-color: #9e9e9e;
-}
-
-.card.dark {
-  background-color: #424242;
+  background-color: #7b838c;
+  color: #faf9f6;
 }
 
 .card h3 {
@@ -152,9 +156,22 @@ img {
   content: "";
   height: 40px;
   position: absolute;
-  top: 10%;
-  left: 10%;
+  justify-content: center;
+  margin-top: 10%;
   transform: translate3d(-50%, -50%, 0);
-  width: 40px;
+  width: 60px;
   will-change: transform;
+}
+
+@media (max-width: 750px) {
+  body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  search-input {
+    margin-top: 10%;
+  }
+  label {
+    margin: 7%;
+  }
 }
