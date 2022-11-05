@@ -169,6 +169,9 @@ img {
     flex-wrap: wrap;
     justify-content: center;
   }
+  .cards {
+    justify-content: center;
+  }
   search-input {
     margin-top: 10%;
   }
